@@ -97,6 +97,10 @@ class DB{
     }
 
 }
+
+$Poster=new DB('poster');
+
+
 function dd($array){
     echo "<pre>";
     echo print_r($array);
