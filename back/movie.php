@@ -1,5 +1,5 @@
 <!-- 院線片管理 -->
-<button onclick="location.href='?do=add_move'">新增電影</button>
+<button onclick="location.href='?do=add_movie'">新增電影</button>
 <hr>
 <div style="overflow:scroll;height:430px;">
 <?php

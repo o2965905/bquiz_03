@@ -1,13 +1,16 @@
-<!-- 處理新增影片功能 -->
-<h3 class="ct">新增院線片</h3>
-<form action="./api/add_move.php" method="post" enctype="multipart/form-data">
+<!-- 編輯影片功能 -->
+<?php
+$row=$Movie->find($_GET['id']);
+?>
+<h3 class="ct">編輯院線片</h3>
+<form action="./api/add_movie.php" method="post" enctype="multipart/form-data">
     <table style="width:75%;margin:auto;">
         <tr>
             <td>影片資料</td>
             <td>
                 <div>
                     <label>片名 : </label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" value="<?=$row['name'];?>">
                 </div>
                 <div>
                     <label>分級 : </label>
@@ -20,7 +23,7 @@
                 </div>
                 <div>
                     <label>片長 : </label>
-                    <input type="number" name="length">
+                    <input type="number" name="length" value="<?=$row['length'];?>">
                 </div>
                 <div>
                     <label>上映日期 : </label>
@@ -46,11 +49,11 @@
                 </div>
                 <div>
                     <label>發行商 : </label>
-                    <input type="text" name="publish">
+                    <input type="text" name="publish" value="<?=$row['publish'];?>">
                 </div>
                 <div>
                     <label>導演 : </label>
-                    <input type="text" name="director">
+                    <input type="text" name="director" value="<?=$row['director'];?>">
                 </div>
                 <div>
                     <label>預告影片 : </label>
@@ -64,10 +67,11 @@
         </tr>
         <tr>
             <td>劇情簡介</td>
-            <td><textarea name="intro" style="width:98%;height:60px;"></textarea></td>
+            <td><textarea name="intro" style="width:98%;height:60px;"><?=$row['intro'];?></textarea></td>
         </tr>
     </table>
     <div class="ct">
+        <input type="hidden" name="id" value="<?=$row['id'];?>">
         <input type="submit" value="新增">
         <input type="reset" value="重置">
     </div>
