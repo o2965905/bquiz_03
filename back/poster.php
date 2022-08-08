@@ -24,6 +24,7 @@ foreach($rows as $row){
     <div style="width:24.6%" class="ct">
         <button type="button">往上</button>
         <button type="button">往下</button>
+        <input type="number" name="num[]" value="<?=$row['rank'];?>">
     </div>
     <div style="width:24.6%" class="ct">
         <input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>> 顯示
