@@ -40,4 +40,24 @@ foreach($rows as $key => $row){
 
 <script>
 
+//排序按鈕功能
+function sw(table,id){
+    $.post("./api/switch.php",{table,id},()=>{
+        location.reload();
+    })
+}
+
+//刪除電影按鈕功能
+function del(table,id){
+    $.post("./api/del.php",{table,id},()=>{
+        location.reload();
+    })
+}
+
+//顯示/隱藏功能
+function show(id){
+    $.post("./api/show.php",{id},()=>{
+        location.reload();
+    })
+}
 </script>
