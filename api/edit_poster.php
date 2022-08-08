@@ -21,7 +21,7 @@ foreach($_POST['id'] as $key => $id){
         //無則表示要設定為隱藏 0
         $row['sh']=(isset($_POST['sh']) && in_array($id,$_POST['sh']))?1:0;
 
-        $row['rank']=$_POST['num'][$key];
+        
 
         $Poster->save($row);
     }
