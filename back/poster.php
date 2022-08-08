@@ -52,9 +52,17 @@ foreach($rows as $key => $row){
 
 </div>
 <script>
+    //排序按鈕被點擊時
     $(".btn").on('click',function(){
-        let id=$(this).data('id')
+
+        //取得點擊時的元件的data-id值，並使用split函式把字串拆成陣列
+        let id=$(this).data('id').split("-")
         console.log(id);
+
+        //使用ajax post方式把id傳送到api去做處理，處理完成後重整頁面
+        $.post("./api/switch.php",{table:'poster',id},()=>{
+            location.reload();
+        })
     })
 </script>
 
