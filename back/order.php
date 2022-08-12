@@ -12,7 +12,7 @@
 </div>
 <div style="overflow:auto;height: 450px;">
     <?php
-    $orders = $Order->all();
+    $orders = $Order->all(' order by `no` desc ');
     foreach ($orders as $ord) {
     ?>
         <div style="display:flex;">
