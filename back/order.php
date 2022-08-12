@@ -1,6 +1,13 @@
 <!-- 電影訂票管理 -->
 <h3 class="ct">訂單清單</h3>
-
+<style>
+    .header>div,
+    .row>div {
+        /* width:14%; */
+        width: calc(100% / 7);
+        text-align: center;
+    }
+</style>
 <div class="header" style="display:flex;">
     <div>訂單編號</div>
     <div>電影名稱</div>
@@ -15,14 +22,24 @@
     $orders = $Order->all(' order by `no` desc ');
     foreach ($orders as $ord) {
     ?>
-        <div style="display:flex;">
+        <div class="row" style="display:flex;align-items:center;">
             <div><?= $ord['no']; ?></div>
             <div><?= $ord['movie']; ?></div>
             <div><?= $ord['date']; ?></div>
             <div><?= $ord['session']; ?></div>
             <div><?= $ord['qt']; ?></div>
-            <div><?= $ord['seats']; ?></div>
-            <div><button onclick="del('orders',<?= $ord['id']; ?>)">刪除</button></div>
+            <div>
+                <?php
+                $seats=unserialize($ord['seats']);
+                foreach($seats as $seat){
+                    echo (floor($seat/5)+1)."排".($seat%5+1)."號";
+                    echo "<br>";
+                }
+                ?>
+            </div>
+            <div>
+                <button onclick="del('orders',<?= $ord['id']; ?>)">刪除</button>
+            </div>
         </div>
         <hr>
     <?php
