@@ -100,6 +100,7 @@ class DB{
 
 $Poster=new DB('poster');
 $Movie=new DB('movie');
+$Order=new DB('orders');
 
 $Level=[
     '普遍級'=>'03C01.png',
