@@ -10,7 +10,7 @@ if(!empty($_FILES['trailer']['tmp_name'])){
     $_POST['trailer']=$row['trailer'];
 }
 if(!empty($_FILES['poster']['tmp_name'])){
-
+    
     $_POST['poster']=$_FILES['poster']['name'];
     move_uploaded_file($_FILES['poster']['tmp_name'],'../upload/'.$_FILES['poster']['name']);
 }else{
@@ -26,4 +26,4 @@ $_POST['rank']=$row['rank'];
 $Movie->save($_POST);
 
 to("../back.php?do=movie");
-?> 
+?>
