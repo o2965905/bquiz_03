@@ -11,12 +11,12 @@
 <div>
     快速刪除:
     <input type="radio" name="type" value="date">依日期
-    <input type="text" name="date" >
-    <input type="radio" name="type" id="movie">依電影
-    <select name="movie" >
+    <input type="text" name="date">
+    <input type="radio" name="type" value="movie">依電影
+    <select name="movie">
         <?php
-        $opts=$Order->q("select `movie` from `orders` group by `movie`");
-        foreach($opts as $opt){
+        $opts = $Order->q("select `movie` from `orders` group by `movie`");
+        foreach ($opts as $opt) {
             echo "<option value='{$opt['movie']}'>{$opt['movie']}</option>";
         }
         ?>
@@ -45,15 +45,15 @@
             <div><?= $ord['qt']; ?></div>
             <div>
                 <?php
-                $seats=unserialize($ord['seats']);
-                foreach($seats as $seat){
-                    echo (floor($seat/5)+1)."排".($seat%5+1)."號";
+                $seats = unserialize($ord['seats']);
+                foreach ($seats as $seat) {
+                    echo (floor($seat / 5) + 1) . "排" . ($seat % 5 + 1) . "號";
                     echo "<br>";
                 }
                 ?>
             </div>
             <div>
-                <button onclick="del('orders',<?= $ord['id']; ?>)">刪除</button>
+            <button onclick="del('orders',<?=$ord['id'];?>)">刪除</button>
             </div>
         </div>
         <hr>
@@ -71,4 +71,26 @@
             location.reload();
         })
     }
+
+    function qDel(){
+    let type=$("input[name='type']:checked").val();
+    let target;
+    switch(type){
+        case "date":
+            target=$("input[name='date']").val()
+        break;
+        case 'movie':
+            target=$("select[name='movie']").val()
+        break;
+    }
+
+    let con=confirm("你確定要刪除全部"+target+"的資料嗎?");
+
+    if(con){
+
+        $.post("./api/q_del.php",{type,target},()=>{
+            location.reload();
+        })
+    }
+}
 </script>
