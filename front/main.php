@@ -38,6 +38,7 @@
   width:100%;
   text-align: center;
   position: absolute;
+  display: none;
 }
 .poster img{
   width:99%;
@@ -98,7 +99,9 @@
         </div>
       </div>
     </div>
-
+<script>
+  $(".poster").eq(0).show();
+</script>
 
 
 
