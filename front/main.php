@@ -52,6 +52,14 @@
 .icon img{
   width:70px;
 }
+.left:hover,
+.right:hover,
+.icon:hover{
+  cursor: pointer;
+}
+.icon:hover{
+  border: 2px solid #ccc;
+}
 </style>
 
 <div class="half" style="vertical-align:top;">
