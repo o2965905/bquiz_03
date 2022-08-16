@@ -4,6 +4,7 @@
   height:280px;
   margin:auto;
   background:white;
+  position: relative;
 }
 
 .controls{
@@ -31,6 +32,14 @@
   background:yellow;
   height:100%;
 }
+.poster{
+  width:100%;
+  text-align: center;
+  position: absolute;
+}
+.poster img{
+  width:99%;
+}
 </style>
 
 <div class="half" style="vertical-align:top;">
@@ -38,6 +47,16 @@
       <div class="rb tab" style="width:95%;">
         <div>
           <div class="lists">
+          <?php
+              $pos=$Poster->all(['sh'=>1]," order by rank");
+              foreach($pos as $key => $po){
+                echo "<div class='poster' id='p{$po['id']}' data-ani='{$po['ani']}'>";
+                echo "<img src='./upload/{$po['img']}'>";
+                echo "<div>{$po['name']}</div>";
+                echo "</div>";
+              }
+
+            ?>
           </div>
           <div class="controls">
             <div class="left"></div>

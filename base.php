@@ -1,10 +1,10 @@
 <?php
-session_start();
+// session_start();
 date_default_timezone_set('Asia/Taipei');
 
 class DB{
     protected $table;
-    protected $dsn='mysql:host=localhost;charset=utf8;dbname=db20';
+    protected $dsn='mysql:host=localhost;charset=utf8;dbname=db19';
     protected $pdo;
 
     function __construct($table)
