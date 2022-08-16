@@ -59,6 +59,7 @@
     padding: 2px;
     text-align: center;
     font-size: small;
+    position: relative;
   }
 
   .icon img {
@@ -116,23 +117,93 @@
   $(".poster").eq(0).show();
 
   let start = 0;
+  // let slider = setInterval(() => {
+
+  //   $(".poster").eq(start).fadeOut(800, () => {
+
+  //     if (start >= $(".poster").length - 1) {
+  //       // clearInterval(slider) //start跑完，就停止
+  //       start = 0 //無限循環
+  //     } else {
+  //       start++;
+  //     }
+
+  //     console.log("現在跑的是eq" + start + "的海報")
+  //     $(".poster").eq(start).fadeIn(800)
+
+  //   })
+
+  // }, 2000)
+
+  $(".icon").on("click", function() {
+    let now = $(".poster:visible").hide(1000)
+    let id = $(this).attr("id").replace("i", "p")
+    $("#" + id).show(1000)
+  })
   let slider = setInterval(() => {
+    transition()
+  }, 2000)
 
-    $(".poster").eq(start).fadeOut(800, () => {
+  function transition() {
+    let now = $(".poster:visible")
+    let eq = $(now).index()
+    //判斷下一張海報的索引值
+    if (eq >= $('.icon').length - 1) {
+      eq = 0;
+    } else {
+      eq = eq + 1;
+    }
+    let next = $(".poster").eq(eq)
+    let ani = $(now).data('ani')
 
-      if (start >= $(".poster").length - 1) {
-        // clearInterval(slider) //start跑完，就停止
-        start = 0 //無限循環
-      } else {
-        start++;
-      }
+    switch (ani) {
+      case 1:
+        //淡入淡出
+        $(now).fadeOut(800, () => {
+          $(next).fadeIn(800)
+        })
 
-      console.log("現在跑的是eq" + start + "的海報")
-      $(".poster").eq(start).fadeIn(800)
+        break;
+      case 2:
+        //滑入滑出
+        $(now).slideUp(800, () => {
+          $(next).slideDown(800)
+        })
+        break;
+      case 3:
+        //縮放
+        $(now).hide(800, () => {
+          $(next).show(800)
+        })
+        break;
+    }
 
+  }
+
+  let p = 1
+  let pages = $(".poster").length - 4
+
+  $(".left,.right").on("click", function() {
+    let arrow = $(this).attr('class');
+    let shift;
+    switch (arrow) {
+      case "left":
+        if (p > 1) {
+          p--
+        }
+        break;
+      case "right":
+        if (p <= pages) {
+          p++;
+        }
+        break;
+    }
+    shift = (p - 1) * 80;
+    $(".icon").animate({
+      right: shift
     })
 
-  }, 2000)
+  })
 </script>
 
 
