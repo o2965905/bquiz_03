@@ -100,7 +100,27 @@
       </div>
     </div>
 <script>
+
   $(".poster").eq(0).show();
+
+  let start=0;
+  let slider=setInterval(()=>{
+
+    $(".poster").eq(start).fadeOut(800,()=>{
+      
+      start++;
+      $(".poster").eq(start).fadeIn(800)
+      
+    })
+    console.log("現在跑的是eq"+start+"的海報")
+
+    if(start>=$(".poster").length-1){
+      // clearInterval(slider) //start跑完，就停止
+      start=0 //無限循環
+    }
+
+  },2000)
+
 </script>
 
 
