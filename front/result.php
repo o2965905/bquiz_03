@@ -6,7 +6,7 @@ $order = $Order->find(['no' => $_GET['no']]);
         border: 1px solid #ccc;
     }
 </style>
-<table id='resutl' style="width:65%;margin:auto;padding:20px;border:1px solid #999">
+<table id='result' style="width:65%;margin:auto;padding:20px;border:1px solid #999">
     <tr>
         <td colspan="2">感謝您的訂購，您的訂單編號是 : <?= $_GET['no'] ?></td>
     </tr>
