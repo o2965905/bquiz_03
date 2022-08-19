@@ -42,6 +42,7 @@
         date:'',
         sessionId:0,
         session:'',
+        seats:null,
     }
 
     $("#movie").load("./api/movie_list.php",{id:<?=$selectedMovieId;?>},()=>{
@@ -128,5 +129,7 @@
             }
             $("#tickets").text(seats.length)
         })
+
+        info.seats=seats;
     }
 </script>
