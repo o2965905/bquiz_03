@@ -1,7 +1,12 @@
 <?php
 include_once "../base.php";
 
-
+$ords = $Order->all(['movie' => $_GET['movie'], 'date' => $_GET['date'], 'session' => $_GET['session']]);
+$seats = [];
+foreach ($ords as $ord) {
+    $s = unserialize($ord['seats']);
+    $seats = array_merge($seats, $s);
+}
 ?>
 
 <style>
@@ -35,11 +40,19 @@ include_once "../base.php";
     <?php
 
     for ($i = 0; $i < 20; $i++) {
-        echo "<div class='seat'>";
+        if (!in_array($i, $seats)) {
+            echo "<div class='seat empty'>";
+        } else {
+            echo "<div class='seat checked'>";
+        }
         echo floor($i / 5) + 1;
         echo "排";
         echo floor($i % 5) + 1;
         echo "號";
+        if (!in_array($i, $seats)) {
+
+            echo "<input type='checkbox' name='seat' value='$i' class='chk'>";
+        }
         echo "</div>";
     }
 
@@ -57,10 +70,10 @@ include_once "../base.php";
     </div>
 </div>
 <script>
-    function checkout(){
-        $.post("./api/order.php",info,(no)=>{
-            console.log(no)
-            location.href=`?do=result&no=${no}`
+    function checkout() {
+        $.post("./api/order.php", info, (no) => {
+            // console.log(no)
+            location.href = `?do=result&no=${no}`
         })
     }
 </script>
