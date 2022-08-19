@@ -1,5 +1,6 @@
 <!-- 前台線上訂票，撈日期的資料 -->
 
+
 <?php
 include_once "../base.php";
 $id=$_POST['movie'];
@@ -15,4 +16,4 @@ for($i=0;$i<$days;$i++){
     echo "<option value='$date'>$d</option>";
 }
 
-?> 
+?>

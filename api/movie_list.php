@@ -13,4 +13,4 @@ foreach($movies as $movie){
     $selected=($selectId==$movie['id'])?'selected':'';
     echo "<option value='{$movie['id']}' $selected>{$movie['name']}</option>";
 }
-?> 
+?>
